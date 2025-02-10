@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Practice Website</title>
+    <script>
+        function sumArray() {
+            let arr = [1, 2, 3, 4, 5];
+            alert("Sum: " + arr.reduce((a, b) => a + b, 0));
+        }
+        
+        function reverseString() {
+            let str = prompt("Enter a string:");
+            alert("Reversed: " + str.split('').reverse().join(''));
+        }
+        
+        function generatePrimes() {
+            let n = parseInt(prompt("Enter N:", "5"));
+            let primes = [];
+            for (let i = 2; primes.length < n; i++) {
+                if (primes.every(p => i % p !== 0)) primes.push(i);
+            }
+            alert("First " + n + " primes: " + primes.join(', '));
+        }
+        
+        function changeBgColor() {
+            document.body.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+        }
+        
+        function checkAgeGroup() {
+            let age = parseInt(document.getElementById('ageInput').value);
+            let group = age < 13 ? "Child" : age < 20 ? "Teenager" : age < 60 ? "Young" : "Senior Citizen";
+            alert("Age Group: " + group);
+        }
+        
+        function calculate(op) {
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            let result;
+            switch (op) {
+                case '+': result = num1 + num2; break;
+                case '-': result = num1 - num2; break;
+                case '*': result = num1 * num2; break;
+                case '/': result = num1 / num2; break;
+            }
+            document.getElementById('calcResult').innerText = "Result: " + result;
+        }
+        
+        function computeGrade() {
+            let marks = [];
+            for (let i = 1; i <= 5; i++) {
+                marks.push(parseFloat(document.getElementById('sub' + i).value));
+            }
+            let avg = marks.reduce((a, b) => a + b, 0) / marks.length;
+            let grade = avg >= 90 ? "A+" : avg >= 80 ? "A" : avg >= 70 ? "B" : avg >= 60 ? "C" : "F";
+            alert("Grade: " + grade);
+        }
+    </script>
+</head>
+<body>
+    <h1>JavaScript Practice Website</h1>
+    <button onclick="sumArray()">Find Sum of Array</button>
+    <button onclick="reverseString()">Reverse String</button>
+    <button onclick="generatePrimes()">Generate N Primes</button>
+    <button onclick="changeBgColor()">Change Background Color</button>
+    
+    <h2>Age Group Checker</h2>
+    <input type="number" id="ageInput" placeholder="Enter age">
+    <button onclick="checkAgeGroup()">Check Age Group</button>
+    
+    <h2>Simple Calculator</h2>
+    <input type="number" id="num1" placeholder="Enter number 1">
+    <input type="number" id="num2" placeholder="Enter number 2">
+    <button onclick="calculate('+')">+</button>
+    <button onclick="calculate('-')">-</button>
+    <button onclick="calculate('*')">*</button>
+    <button onclick="calculate('/')">/</button>
+    <p id="calcResult">Result: </p>
+    
+    <h2>Student Grade Calculator</h2>
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="number" id="sub1" placeholder="Marks 1">
+    <input type="number" id="sub2" placeholder="Marks 2">
+    <input type="number" id="sub3" placeholder="Marks 3">
+    <input type="number" id="sub4" placeholder="Marks 4">
+    <input type="number" id="sub5" placeholder="Marks 5">
+    <button onclick="computeGrade()">Compute Grade</button>
+</body>
+</html>
